@@ -1,0 +1,2 @@
+angular.module("envConfig", [])
+.constant("EnvironmentConfig", {"botTemplate":"http://localhost:4200/assets/widget/botResponseTemplate.html","cssPath":"http://localhost:4200/assets/widget/","jsPath":"http://localhost:4200/assets/widget/","widgetTemplate":"http://localhost:4200/assets/widget/template.html","webSocketPath":"http://localhost:4000/","allowCrossDomainAccess":"http://localhost*/**","slickPath":"http://localhost:4200/assets/widget/angular-slick.js","angSlickPath":"http://localhost:4200/assets/widget/angular-slick.js"});
