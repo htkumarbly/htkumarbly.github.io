@@ -1,0 +1,109 @@
+<div class=card>
+<div ng-switch=entity.type>
+<div class="item item-text-wrap">
+<div ng-switch-when=attachment>
+   <div ng-repeat="items in entity.value">
+      <div ng-switch=items.type>
+         <div ng-switch-when=button>
+            <div class="webchat-btn" ng-if="items.value[0].title">{{items.value[0].title}}</div>
+            <div ng-repeat="btnData in items.value[0]">
+               <div ng-repeat="btn in btnData track by $index"><button class="button button-block button-positive button-small"ng-click=btnClick(btn.type,btn.value) ng-if="btn.type=='postBack'"value=btn.title ng-class="{'grayBtn':btn.value==undefined}">{{btn.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(btn.type,btn.value) ng-if="btn.type=='signin'"value=btn.title ng-class="{'grayBtn':btn.value==undefined}">{{btn.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(btn.type,btn.value) ng-if="btn.type=='webUrl'"value=btn.title ng-class="{'grayBtn':btn.value==undefined}">{{btn.title}}</button></div>
+            </div>
+         </div>
+         <div ng-switch-when=image>
+            <div ng-repeat="(key,value) in items.value[0] track by $index"><img ng-click="prevImagePopup(value)" id="prevImg" class="full-image" back-img={{formatUrl(value)}} ng-if="key=='base64'" data-ng-src={{formatUrl(value)}}></div>
+         </div>
+         <div ng-switch-when=button-inline>
+            <div ng-repeat="btnData in items.value[0]">
+               <div ng-repeat="btn in btnData track by $index"><button class="button button-block button-positive button-small"ng-click=btnClick(btn.type,btn.value) ng-if="btn.type=='postBack'"value=btn.title ng-class="{'grayBtn':btn.value==undefined}">{{btn.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(btn.type,btn.value) ng-if="btn.type=='signin'"value=btn.title ng-class="{'grayBtn':btn.value==undefined}">{{btn.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(btn.type,btn.value) ng-if="btn.type=='webUrl'"value=btn.title ng-class="{'grayBtn':btn.value==undefined}">{{btn.title}}</button></div>
+            </div>
+         </div>
+         <div class="card list"ng-switch-when=carousel>
+            <slick class=slides infinite=false slides-to-show=1 touch-move=true slides-to-scroll=1 data=items.value>
+               <div ng-repeat="carouselData in items.value">
+                  <div class="slide slide-4">
+                     <div class=full-image ng-if="carouselData.imageUrl!=null"back-img={{carouselData.imageUrl}}></div>
+                     <p class=title ng-bind-html=trust(carouselData.title)|newline>
+                     <p class=sub-title ng-bind-html=trust(carouselData.subtitle)|newline>
+                     <div class="item item-button"ng-if="carouselData.buttons.length > 0">
+                        <div ng-repeat="card in carouselData.buttons"><button class="button button-block button-positive button-small"ng-click=btnClick(card.type,card.value) ng-if="card.type=='webUrl'"value=card.title ng-class="{'grayBtn':card.value==undefined}">{{card.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(card.type,card.value) ng-if="card.type=='postBack'"value=card.title ng-class="{'grayBtn':card.value==undefined}">{{card.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(card.type,card.value) ng-if="card.type=='signin'"value=card.title ng-class="{'grayBtn':card.value==undefined}">{{card.title}}</button></div>
+                     </div>
+                  </div>
+            </slick>
+            </div>
+         </div>
+         <div ng-switch-when=sign-in>
+            <slick class=slides data=items.value settings=slickConfig>
+               <div ng-repeat="signInData in items.value">
+                  <div class="slide slide-4">
+                     <img ng-if="signInData.imageUrl!=null"back-img={{signInData.imageUrl}} ng-src={{signInData.imageUrl}}>
+                     <p class=title ng-bind-html=trust(signInData.title)|newline>
+                     <div ng-repeat="sCard in signInData.buttons"><button class="button button-block button-positive button-small"ng-click=btnClick(sCard.type,sCard.value) ng-if="sCard.type=='postBack'"value=sCard.title ng-class="{'grayBtn':sCard.value==undefined}">{{sCard.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(sCard.type,sCard.value) ng-if="sCard.type=='signin'"value=sCard.title ng-class="{'grayBtn':sCard.value==undefined}">{{sCard.title}}</button><button class="button button-block button-positive button-small"ng-click=btnClick(sCard.type,sCard.value) ng-if="sCard.type=='webUrl'"value=sCard.title ng-class="{'grayBtn':sCard.value==undefined}">{{sCard.title}}</button></div>
+                  </div>
+            </slick>
+            </div>
+         </div>
+         <div class="card receipt"ng-switch-when=receipt>
+            <slick class=slides data=items.value settings=slickConfig>
+               <div ng-repeat="receiptData in items.value">
+                  <div>
+                     <h3 class=receipt-header ng-bind-html=trust(receiptData.title)|newline></h3>
+                     <div class=row>
+                        <div class=col>Paid Via:</div>
+                        <div class="col align-r"ng-bind-html=trust(receiptData.paymentMethod)|newline></div>
+                     </div>
+                     <div class=row>
+                        <div class=col>Order No:</div>
+                        <div class="col align-r"ng-bind-html=trust(receiptData.orderNumber)|newline></div>
+                     </div>
+                     <div ng-repeat="extra in receiptData.extraInfo"ng-if="receiptData.extraInfo.length>0">
+                        <div class=row ng-if="extra.key!='Phone:' && extra.key!='Email:'">
+                           <div class=col ng-bind-html=trust(extra.key)>{{extra.key}}:</div>
+                           <div class="col align-r"ng-bind-html=trust(extra.value)|newline></div>
+                        </div>
+                        <div class=row ng-if="extra.key=='Phone:'">
+                           <div class=col ng-bind-html=trust(extra.key)>{{extra.key}}:</div>
+                           <div class="col align-r"><a ng-href=tel:{{extra.value}}>{{extra.value}}</a></div>
+                        </div>
+                        <div class=row ng-if="extra.key=='Email:'">
+                           <div class=col ng-bind-html=trust(extra.key)>{{extra.key}}:</div>
+                           <div class="col align-r"><a ng-href=mailto:{{extra.value}}>{{extra.value}}</a></div>
+                        </div>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class=row>
+                     <div class=col ng-bind-html=trust(receiptData.items[0].title)|newline></div>
+                     <div class="col align-r"><img ng-src={{receiptData.items[0].imageUrl}}></div>
+                  </div>
+                  <hr>
+                  <div class=row ng-if=receiptData.shippingCost>
+                     <div class=col>Shipping And Handling:</div>
+                     <div class="col align-r"ng-bind-html=trust(receiptData.shippingCost)|newline>${{receiptData.shippingCost}}</div>
+                  </div>
+                  <div class=row ng-if=receiptData.subtotal>
+                     <div class=col>Subtotal:</div>
+                     <div class="col align-r"ng-bind-html=trust(receiptData.subtotal)|newline></div>
+                  </div>
+                  <div class=row ng-if=receiptData.tax>
+                     <div class=col>Tax:</div>
+                     <div class="col align-r"ng-bind-html=trust(receiptData.tax)|newline>${{receiptData.tax}}</div>
+                  </div>
+                  <hr>
+                  <div class=row ng-if=receiptData.total>
+                     <div class=col><strong>Total:</strong></div>
+                     <div class="col align-r">${{receiptData.total}}</div>
+                  </div>
+                  <div ng-repeat="recCard in receiptData.buttons"><button class="button button-block button-positive button-small"ng-click=btnClick(recCard.type,recCard.value) ng-if="recCard.type=='postBack'"value=recCard.title>{{recCard.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(recCard.type,recCard.value) ng-if="recCard.type=='signin'"value=recCard.title>{{recCard.title}}</button> <button class="button button-block button-positive button-small"ng-click=btnClick(btn.type,btn.value) ng-if="btn.type=='webUrl'"value=btn.title>{{btn.title}}</button></div>
+            </slick>
+            </div>
+         </div>
+         <div class=msg ng-switch-default>
+            <div ng-bind-html=trust(items)|newline></div>
+         </div>
+      </div>
+   </div>
+</div>
+<div ng-switch-when=text>
+   <div ng-bind-html="trust(entity.value)|newline"></div>
+</div>
