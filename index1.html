@@ -1,35 +1,56 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-Hi
-
-<script>
-
-  var url = window.location.href;
-      let arr = url.split('&');
-      arr = arr[0].split('?');
-      arr = arr[1].split('=');
-      console.log(arr[1]);
-
-var http = new XMLHttpRequest();
-var url = 'https://www.linkedin.com/oauth/v2/accessToken';
-var params = "grant_type=authorization_code&code="+arr[1]+"&redirect_uri=https%3A%2F%2Fhtkumarbly.github.io%2Findex1.html&client_id=81ts5nc9wufjcu&client_secret=tnRiSLQpLdGSjAoG";
-http.open("POST", url, true);
-
-//Send the proper header information along with the request
-http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-http.setRequestHeader('Access-Control-Allow-Origin', 'https://htkumarbly.github.io/index1.html');
-http.setRequestHeader('Access-Control-Allow-Credentials', 'true');
-
-http.onreadystatechange = function() {//Call a function when the state changes.
-    if(http.readyState == 4 && http.status == 200) {
-        alert(http.responseText);
-    }
-}
-http.send(params);
-
-</script>
-
-</body>
-</html>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- array of downloads. -->
+  <key>items</key>
+  <array>
+   <dict>
+    <!-- an array of assets to download -->
+     <key>assets</key>
+      <array>
+       <!-- software-package: the ipa to install. -->
+        <dict>
+         <!-- required. the asset kind. -->
+          <key>kind</key>
+          <string>software-package</string>
+          <!-- required. the URL of the file to download. -->
+          <key>url</key>
+       <string>https://dl.dropboxusercontent.com/s/xxxyyyzzz/your_app.ipa</string>          
+        </dict>
+        <!-- display-image: the icon to display during download.-->
+        <dict>
+         <key>kind</key>
+         <string>display-image</string>
+         <key>url</key>
+         <string>http://www.yourwebsite.com/inhouse/icon.png</string>
+        </dict>
+        <!-- full-size-image: the large 512x512 icon used by iTunes. -->
+        <dict>
+         <key>kind</key>
+         <string>full-size-image</string>
+         <key>needs-shine</key>
+         <true/>
+         <key>url</key><string>http://www.yourwebsite.com/inhouse/iTunesArtwork.png</string>
+        </dict>
+      </array><key>metadata</key>
+      <dict>
+       <!-- required -->
+       <key>bundle-identifier</key>
+       <string>com.yourwebsite.app</string>
+       <!-- optional (software only) -->
+       <key>bundle-version</key>
+       <string>1.0</string>
+       <!-- required. the download kind. -->
+       <key>kind</key>
+       <string>software</string>
+       <!-- optional. displayed during download; typically company name -->
+       <key>subtitle</key>
+       <string>Your App Name</string>
+       <!-- required. the title to display during the download. -->
+       <key>title</key>
+       <string>Your App Name</string>
+      </dict>
+    </dict>
+  </array>
+</dict>
+</plist>
