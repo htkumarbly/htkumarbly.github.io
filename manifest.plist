@@ -39,7 +39,7 @@
        <string>com.smartbothub.grantme</string>
        <!-- optional (software only) -->
        <key>bundle-version</key>
-       <string>1.4</string>
+       <string>1.5</string>
        <!-- required. the download kind. -->
        <key>kind</key>
        <string>software</string>
