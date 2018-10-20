@@ -1,7 +1,7 @@
 <html>
                 <head>
                 <script>
-                myFunc() {window.postMessage('With timeout');
+                myFunc() {setTimeout(() => window.postMessage('With timeout'), 0);
                          }
                 </script>
                 </head>
