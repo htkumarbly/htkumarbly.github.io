@@ -1,8 +1,10 @@
 <html>
                 <head>
                 <script>
-                setTimeout(() => window.postMessage('With timeout'), 5000)
+                myFunc() {window.postMessage('With timeout');
+                         }
                 </script>
                 </head>
                 <body><h1>Hello from webView</h1></body>
+                <button onclick="myFunc()">Click</button>
                 </html>
