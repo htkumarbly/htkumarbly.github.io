@@ -1,29 +1,8 @@
 <html>
-
-<body>
-    <div id='ang' ng-controller='chatCnt'>
-        <div ng-show='loadWidget==true' class='animate-slide'>
-            <div class="header"><span id="botname"></span><i ng-click="loadWidgetPopup()" class="icon minimise icon ion-ios-arrow-down"></i></div>
-            <div id="msgContainer">
-                <div ng-repeat="item in messages track by $index">
-                    <div ng-switch="item.msgSender">
-                        <user ng-switch-when="user" entity="item.val"></user>
-                        <bots ng-switch-when="bot" entity="item.val"></bots>
-                    </div>
-                </div>
-            </div>
-            <form class="user-input-wrap" ng-submit="subForm(usrInput)">
-                <input type="text" ng-disabled="disableTxt" id="userInputBox" ng-model="usrInput" autocomplete="off" />
-                <div class="arr" ng-click="subForm(usrInput)"><i class="icon icon ion-ios-navigate"></i></div>
-            </form>
-        </div>
-        <div>
-            <div class="chat-btn" ng-click="loadWidgetPopup()" title="Click me to give your bot a shot!"><i class="icon chat icon ion-ios-chatboxes"></i></div>
-        </div>
-    </div>
-</body>
-
-</html>
-<div id="myModal" class="modal">
-    <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-    <img class="modal-content" id="img01">
+    <head>
+    <script>
+    window.postMessage("Messga from webView")
+    </script>
+    </head>
+    <body><h1>Hello from webView</h1></body>
+    </html>
