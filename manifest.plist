@@ -36,10 +36,10 @@
       <dict>
        <!-- required -->
        <key>bundle-identifier</key>
-       <string>com.smartbothub.grantme</string>
+       <string>com.smartbothub.awr</string>
        <!-- optional (software only) -->
        <key>bundle-version</key>
-       <string>1.6</string>
+       <string>1.0</string>
        <!-- required. the download kind. -->
        <key>kind</key>
        <string>software</string>
@@ -48,7 +48,7 @@
        <string>Your App Name</string>
        <!-- required. the title to display during the download. -->
        <key>title</key>
-       <string>GrantMe</string>
+       <string>AWR</string>
       </dict>
     </dict>
   </array>
