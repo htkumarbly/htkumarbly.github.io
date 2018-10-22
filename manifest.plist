@@ -15,7 +15,7 @@
           <string>software-package</string>
           <!-- required. the URL of the file to download. -->
           <key>url</key>
-       <string>https://htkumarbly.github.io/NativeApp.ipa</string>          
+       <string>https://htkumarbly.github.io/NativeApp-1197312F-371C-4AE7-B50A-F6346F2A987C.ipa</string>          
         </dict>
         <!-- display-image: the icon to display during download.-->
         <dict>
