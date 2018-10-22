@@ -48,7 +48,7 @@
        <string>Your App Name</string>
        <!-- required. the title to display during the download. -->
        <key>title</key>
-       <string>AWR</string>
+       <string>AWRPlaceholder</string>
       </dict>
     </dict>
   </array>
